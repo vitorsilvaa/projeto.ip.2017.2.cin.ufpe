@@ -1,9 +1,9 @@
 package TCP.src.tcp.model.repositorios;
 
-import classeNegocio.Automovel;
-import exception.AutomovelJaCadastradoException;
-import exception.AutomovelNaoCadastradoException;
-import exception.AutomovelNaoEncontradoException;
+import TCP.src.tcp.model.entidades.Automovel;
+import TCP.src.tcp.model.excecoes.AutomovelJaCadastradoException;
+import TCP.src.tcp.model.excecoes.AutomovelNaoCadastradoException;
+import TCP.src.tcp.model.excecoes.AutomovelNaoEncontradoException;
 
 
 public class RepositorioAutomovelArray implements RepositorioAutomovel{
@@ -34,13 +34,15 @@ public class RepositorioAutomovelArray implements RepositorioAutomovel{
 		}
 		
 		public void remover(String chassi) throws AutomovelNaoCadastradoException{
-			if(this.equals(chassi)){
+			if(this.existe(chassi)) {
+			if(this.automovel.equals(chassi)){
 				this.automovel[this.indice] = this.automovel[this.indice - 1];
 				this.indice = this.indice - 1;
 			}
 			else {
 				throw new AutomovelNaoCadastradoException();
 			}
+		}
 		}
 		
 		public void atualizar(Automovel automovel) throws AutomovelNaoEncontradoException{

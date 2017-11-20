@@ -1,8 +1,8 @@
 package TCP.src.tcp.model.repositorios;
-import classeNegocio.Automovel;
-import exception.AutomovelJaCadastradoException;
-import exception.AutomovelNaoCadastradoException;
-import exception.AutomovelNaoEncontradoException;
+import TCP.src.tcp.model.entidades.Automovel;
+import TCP.src.tcp.model.excecoes.AutomovelJaCadastradoException;
+import TCP.src.tcp.model.excecoes.AutomovelNaoCadastradoException;
+import TCP.src.tcp.model.excecoes.AutomovelNaoEncontradoException;
 
 public interface RepositorioAutomovel {
 	void inserir(Automovel automovel) throws  AutomovelJaCadastradoException;

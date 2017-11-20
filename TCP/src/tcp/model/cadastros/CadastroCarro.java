@@ -1,4 +1,5 @@
-package TCP.src.tcp.model.entidades;
+package TCP.src.tcp.model.cadastros;
+import TCP.src.tcp.model.entidades.Carro;
 import TCP.src.tcp.model.excecoes.AutomovelNaoCadastradoException;
 import TCP.src.tcp.model.excecoes.AutomovelNaoEncontradoException;
 import TCP.src.tcp.model.excecoes.CarroJaCadastradoException;

@@ -1,6 +1,9 @@
 package TCP.src.tcp.model.repositorios;
 
-import classeNegocio.Carro;
+import TCP.src.tcp.model.entidades.Carro;
+import TCP.src.tcp.model.excecoes.CarroJaCadastradoException;
+import TCP.src.tcp.model.excecoes.CarroNaoCadastradoException;
+import TCP.src.tcp.model.excecoes.CarroNaoEncontradoException;
 
 
 public class RepositorioCarroTAD implements RepositorioCarro{
@@ -35,7 +38,7 @@ public class RepositorioCarroTAD implements RepositorioCarro{
 	}
 
 
-	public void inserir(Carro carro){
+	public void inserir(Carro carro) throws CarroJaCadastradoException{
 		if(!this.existe(carro.getChassi())){
 			if(this.proximo == null){
 				this.carro = carro;
@@ -43,12 +46,15 @@ public class RepositorioCarroTAD implements RepositorioCarro{
 			}else {
 				this.proximo.inserir(carro);
 			}
+		}else {
+			throw new CarroJaCadastradoException();
 		}
+		
 		
 		
 	}
 
-	public void remover(String chassi){
+	public void remover(String chassi) throws CarroNaoCadastradoException{
 		if(this.existe(chassi)){
 			if(this.carro.equals(chassi)){
 				this.carro = this.proximo.carro;
@@ -57,11 +63,14 @@ public class RepositorioCarroTAD implements RepositorioCarro{
 				this.proximo.remover(chassi);
 			}
 		}
+		else {
+			throw new CarroNaoCadastradoException();
+		}
 		
 		
 	}
 
-	public void atualizar(Carro novo) {
+	public void atualizar(Carro novo) throws CarroNaoEncontradoException{
 		if(this.existe(carro.getChassi())){
 			if(this.carro.equals(carro.getChassi())){
 				this.carro = novo;
@@ -69,11 +78,14 @@ public class RepositorioCarroTAD implements RepositorioCarro{
 				this.proximo.atualizar(novo);
 			}
 		}
+		else {
+			throw new CarroNaoEncontradoException();
+		}
 		
 		
 	}
 
-	public Carro procurar(String chassi){
+	public Carro procurar(String chassi) throws CarroNaoEncontradoException{
 		if(this.existe(chassi)){
 			if(this.carro.getChassi().equals(chassi)){
 				return this.carro;
@@ -81,7 +93,7 @@ public class RepositorioCarroTAD implements RepositorioCarro{
 				return this.proximo.procurar(chassi);
 			}
 		}
-		return carro;
+		throw new CarroNaoEncontradoException();
 		
 	}
 
